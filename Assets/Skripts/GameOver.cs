@@ -9,6 +9,8 @@ public class GameOver : MonoBehaviour
     private float _timer = 0f;
     private float _timeTillGameOVer = 1.5f;
 
+    [SerializeField] private Score _score;
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         _timer += Time.deltaTime;
@@ -17,6 +19,7 @@ public class GameOver : MonoBehaviour
         {
             Debug.Log("Game has restarted!");
             SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+            IsItTheBestScore(_score.CurrentScore);
             gameHasEnded?.Invoke();
         }
     }
@@ -24,5 +27,14 @@ public class GameOver : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         _timer = 0f;
+    }
+
+    private void IsItTheBestScore(int currentScore)
+    {
+
+        if (currentScore > PlayerPrefs.GetInt("HighScore", 0))
+        {
+            PlayerPrefs.SetInt("HighScore", currentScore);
+        }
     }
 }

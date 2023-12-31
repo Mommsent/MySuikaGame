@@ -5,12 +5,8 @@ using UnityEngine.Audio;
 
 public class AudioSettings : MonoBehaviour
 {
-    public delegate void ValueHadBeenSaved();
-    public static event ValueHadBeenSaved HadSaved;
-
     [SerializeField] private TMP_Text _volumeText;
     [SerializeField] private Slider _volumeSlider;
-    [SerializeField] private float _defaultVolume = 1.0f;
     [SerializeField] private AudioMixer _mixer;
     [SerializeField] private string _volumeName;
 
@@ -39,7 +35,6 @@ public class AudioSettings : MonoBehaviour
     {
         float volumeValue = _volumeSlider.value;
         PlayerPrefs.SetFloat(_volumeName, volumeValue);
-        HadSaved?.Invoke();
     }
 
     public void LoadValues()
