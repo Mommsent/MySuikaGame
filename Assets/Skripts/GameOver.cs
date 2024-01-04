@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,7 +8,7 @@ public class GameOver : MonoBehaviour
     public static event GameHasEnded gameHasEnded;
 
     private float _timer = 0f;
-    private float _timeTillGameOVer = 1.5f;
+    private float _timeTillGameOVer = 1.9f;
 
     [SerializeField] private Score _score;
 
@@ -17,10 +18,7 @@ public class GameOver : MonoBehaviour
 
         if(_timer > _timeTillGameOVer)
         {
-            Debug.Log("Game has restarted!");
-            SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
-            IsItTheBestScore(_score.CurrentScore);
-            gameHasEnded?.Invoke();
+            StartCoroutine(StratFade());
         }
     }
 
@@ -36,5 +34,16 @@ public class GameOver : MonoBehaviour
         {
             PlayerPrefs.SetInt("HighScore", currentScore);
         }
+    }
+
+    private IEnumerator StratFade()
+    {
+        gameHasEnded?.Invoke();
+
+        yield return new WaitForSeconds(1.5f);
+
+        Debug.Log("Game has restarted!");
+        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+        IsItTheBestScore(_score.CurrentScore);
     }
 }

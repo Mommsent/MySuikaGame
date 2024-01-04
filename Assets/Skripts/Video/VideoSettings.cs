@@ -7,19 +7,25 @@ public class VideoSettings : MonoBehaviour
 {
     [Header("Resolution Dropdown")]
     [SerializeField] private TMP_Dropdown _resolutionDropdown;
-    private Resolution[] _resolutions;
     private List<Resolution> _filtredResolutions;
-    private double _currentRefreshRate;
-    private int _currentResolutionIndex = 0;
-    private bool _isFoundRes = false;
+
+    [Header("FullScreen Toggle")]
+    [SerializeField] private Toggle _fullScreenToggle;
+    private bool _isFullScreen = true;
 
     private void Start()
     {
+        LoadStateOfFullScreen();
         SetStandartResolutionsMenuOptions();
     }
 
     private void SetStandartResolutionsMenuOptions()
     {
+        Resolution[] _resolutions;
+        double _currentRefreshRate;
+        
+        bool _isFoundRes = false;
+
         _resolutions = Screen.resolutions;
         _filtredResolutions = new List<Resolution>();
 
@@ -34,12 +40,13 @@ public class VideoSettings : MonoBehaviour
             }
         }
 
-        List<string> options = new List<string>();
+        List<string> finaleResolutionList = new List<string>();
+        int _currentResolutionIndex = 0;
 
         for (int i = 0; i < _filtredResolutions.Count; i++)
         {
             string option = $"{_filtredResolutions[i].width} X {_filtredResolutions[i].height} {_filtredResolutions[i].refreshRateRatio.value} Ghz";
-            options.Add(option);
+            finaleResolutionList.Add(option);
             if (_filtredResolutions[i].width == Screen.width && _filtredResolutions[i].height == Screen.height)
             {
                 _currentResolutionIndex = i;
@@ -53,8 +60,25 @@ public class VideoSettings : MonoBehaviour
             SetResolution(_currentResolutionIndex);
         }
 
-        _resolutionDropdown.AddOptions(options);
+        _resolutionDropdown.AddOptions(finaleResolutionList);
         SetResolution(_currentResolutionIndex);
+    }
+
+    private void LoadStateOfFullScreen()
+    {
+        if (PlayerPrefs.HasKey("masterFullscreen"))
+        {
+            int localFullscreen = PlayerPrefs.GetInt("masterFullscreen");
+
+            if (localFullscreen == 1)
+            {
+                _fullScreenToggle.isOn = true;
+            }
+            else
+            {
+                _fullScreenToggle.isOn = false;
+            }
+        }
     }
 
     public void SetResolution(int resolutionIndex)
@@ -63,10 +87,6 @@ public class VideoSettings : MonoBehaviour
         Screen.SetResolution(resolution.width, resolution.height, _isFullScreen);
         _resolutionDropdown.value = resolutionIndex;
     }
-
-    [Header("FullScreen Toggle")]
-    [SerializeField] private Toggle _fullScreenToggle;
-    private bool _isFullScreen = true;
 
     private void OnEnable()
     {
@@ -79,7 +99,6 @@ public class VideoSettings : MonoBehaviour
     public void SetFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
-        isFullScreen = !isFullScreen;
         _isFullScreen = isFullScreen;
         Debug.Log(_isFullScreen);
     }

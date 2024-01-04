@@ -82,9 +82,9 @@ AudioMixerController:
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters:
-  - guid: 104fbb42a8234824f8b93ec0a7d22505
+  - guid: e0ea8d8653b00c14c89a258bc146a5f7
     name: Effects
-  - guid: 2ea7b344204eccf40b71e0f2b566c00c
+  - guid: 835bfa90999c3614fbaa7f643240b191
     name: Master
   - guid: 4e773a6b09fce18489b711815246a1ac
     name: Music

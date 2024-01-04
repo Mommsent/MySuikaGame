@@ -25,7 +25,7 @@ public class AudioSettings : MonoBehaviour
     public void UpdateValueOnChange(float value)
     {
         if (_mixer != null)
-            _mixer.SetFloat(_volumeName, Mathf.Log(value) * 20f);
+            _mixer.SetFloat(_volumeName, Mathf.Log10(value) * 20f);
 
         if (_volumeText != null && _volumeSlider != null)
             SetValue(value);

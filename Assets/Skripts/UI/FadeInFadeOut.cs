@@ -6,68 +6,54 @@ using UnityEngine.SceneManagement;
 public class FadeInFadeOut : MonoBehaviour
 {
     [SerializeField] private Image _panal;
-    [SerializeField] private float _timeToFade = 2f;
+    [SerializeField] private float _timeToFade;
+
+    [SerializeField] private UserInput input;
 
     private void OnEnable()
     {
-        SceneManager.sceneLoaded += FadeGame;
-        GameOver.gameHasEnded += StartToFade;
+        SceneManager.sceneLoaded += FadeOut;
+        GameOver.gameHasEnded += FadeIn;
     }
 
-    private void StartToFade()
+    private void FadeIn()
     {
-        StartCoroutine(FadeOut());
+        StartCoroutine(Fade());
     }
 
-    private IEnumerator FadeOut()
+    private void FadeOut(Scene scene, LoadSceneMode mode)
     {
+        StartCoroutine(Fade(1f,0f));
+    }
+
+    private IEnumerator Fade(float startValue = 0f, float endValue = 1f)
+    {
+        input.enabled = false;
+
         _panal.gameObject.SetActive(true);
         Color startColor = _panal.color;
-        startColor.a = 0f;
+        startColor.a = startValue;
         _panal.color = startColor;
 
-        float elapsedTime = 0f;
+        float elapsedTime = startValue;
         while (elapsedTime < _timeToFade)
         {
             elapsedTime += Time.deltaTime;
 
-            float newAlpha = Mathf.Lerp(0f, 1f, (elapsedTime / _timeToFade));
+            float newAlpha = Mathf.Lerp(startValue, endValue, (elapsedTime / _timeToFade));
             startColor.a = newAlpha;
             _panal.color = startColor;
 
             yield return null;
         }
-    }
 
-    private void FadeGame(Scene scene, LoadSceneMode mode)
-    {
-        StartCoroutine(FadeGameIn());
-    }
-
-    private IEnumerator FadeGameIn()
-    {
-        _panal.gameObject.SetActive(true);
-        Color startColor = _panal.color;
-        startColor.a = 1f;
-        _panal.color = startColor;
-
-        float elapsedTime = 0f;
-        while (elapsedTime < _timeToFade)
-        {
-            elapsedTime += Time.deltaTime;
-
-            float newAlpha = Mathf.Lerp(1f, 0f, (elapsedTime / _timeToFade));
-            startColor.a = newAlpha;
-            _panal.color = startColor;
-
-            yield return null;
-        }
         _panal.gameObject.SetActive(false);
+        input.enabled = true;
     }
 
     private void OnDisable()
     {
-        SceneManager.sceneLoaded -= FadeGame;
-        GameOver.gameHasEnded -= StartToFade;
+        SceneManager.sceneLoaded -= FadeOut;
+        GameOver.gameHasEnded -= FadeIn;
     }
 }
