@@ -9,6 +9,7 @@ public class AudioSettings : MonoBehaviour
     [SerializeField] private Slider _volumeSlider;
     [SerializeField] private AudioMixer _mixer;
     [SerializeField] private string _volumeName;
+    private float defaultMixerVolume = 1f;
 
     private void OnEnable()
     {
@@ -39,7 +40,7 @@ public class AudioSettings : MonoBehaviour
 
     public void LoadValues()
     {
-        float localSettingsParametr = PlayerPrefs.GetFloat(_volumeName);
+        float localSettingsParametr = PlayerPrefs.GetFloat(_volumeName, defaultMixerVolume);
         SetValue(localSettingsParametr);
     }
 

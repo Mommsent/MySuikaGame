@@ -8,9 +8,10 @@ public sealed class Player : MonoBehaviour
     public delegate void MenuWasPressed();
     public static event MenuWasPressed menuWasPressed;
 
-    [SerializeField] private float _speed = 5f;
+    [SerializeField] private float _speed = 10f;
     [SerializeField] private BoxCollider2D _boundaries;
     [SerializeField] private Transform _fruitThrowTransform;
+    [SerializeField] private CallPauseMenu _menu;
 
     private Bounds _bounds;
 
@@ -34,16 +35,14 @@ public sealed class Player : MonoBehaviour
         FruitSpawner.HasSpawned += ChangeBoundary;
     }
 
-    private void OnDisable()
-    {
-        FruitSpawner.HasSpawned -= ChangeBoundary;
-    }
-
     private void Update()
     {
-        Move();
-        if (UserInput.Instance.IsThrowPressed)
-            throwWasPressed?.Invoke();
+        if(!_menu.GameIsPaused)
+        {
+            if (UserInput.Instance.IsThrowPressed)
+                throwWasPressed?.Invoke();
+            Move();
+        }
         if (UserInput.Instance.IsMenuPressed)
             menuWasPressed?.Invoke();
     }
@@ -76,5 +75,10 @@ public sealed class Player : MonoBehaviour
 
         _leftBound += bounds.extents.x + EXTRA_WIDTH;
         _rightBound -= bounds.extents.x + EXTRA_WIDTH;
+    }
+
+    private void OnDisable()
+    {
+        FruitSpawner.HasSpawned -= ChangeBoundary;
     }
 }

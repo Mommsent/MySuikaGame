@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 5913544902357689077}
   - component: {fileID: 8234795968480125848}
   - component: {fileID: 1287545952051083000}
-  - component: {fileID: 1118923911030203199}
   - component: {fileID: -7707927921915463287}
   - component: {fileID: 2544840293534784461}
-  m_Layer: 0
+  - component: {fileID: 6232767338632211461}
+  m_Layer: 8
   m_Name: Fruit 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: db8dd26f8890bcc4d87d0b4847aa7b97, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -113,74 +113,8 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!60 &1118923911030203199
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9159515532815902698}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.0666667, y: 1.0666667}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.2894098, y: 0.41651803}
-      - {x: -0.009238111, y: 0.47191522}
-      - {x: -0.09298489, y: 0.4666348}
-      - {x: -0.13705899, y: 0.42723912}
-      - {x: -0.30753648, y: 0.33093908}
-      - {x: -0.40377498, y: 0.20498396}
-      - {x: -0.44337508, y: 0.0070418417}
-      - {x: -0.40870956, y: -0.19259809}
-      - {x: -0.34510258, y: -0.2951269}
-      - {x: -0.23952627, y: -0.34645942}
-      - {x: -0.21066453, y: -0.4015439}
-      - {x: -0.10796939, y: -0.4392055}
-      - {x: 0.10802616, y: -0.43823683}
-      - {x: 0.2080681, y: -0.40051818}
-      - {x: 0.3058455, y: -0.3328625}
-      - {x: 0.40242437, y: -0.2041099}
-      - {x: 0.44335058, y: -0.09252402}
-      - {x: 0.44055188, y: 0.034659922}
-      - {x: 0.4015338, y: 0.2077396}
-      - {x: 0.31864583, y: 0.33267576}
-      - {x: 0.36429808, y: 0.4593141}
-  m_UseDelaunayMesh: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!114 &-7707927921915463287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,3 +143,38 @@ MonoBehaviour:
   FruitIndex: 5
   PointsWhenAnnihilated: 28
   FruitMass: 1.4
+--- !u!58 &6232767338632211461
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9159515532815902698}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 1280
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 1280
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 1280
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 1280
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.005638957, y: -0.004926294}
+  serializedVersion: 2
+  m_Radius: 0.4382461

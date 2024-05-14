@@ -2,15 +2,10 @@ using UnityEngine;
 
 public class PlaySoundEffects : MonoBehaviour
 {
-    private AudioSource m_AudioSource;
+    private AudioSource _audioSource;
 
-    [SerializeField] private AudioClip popSound;
-    [SerializeField] private AudioClip hitSound;
-
-    private void Awake()
-    {
-        m_AudioSource = GetComponent<AudioSource>();
-    }
+    [SerializeField] private AudioClip _popSound;
+    [SerializeField] private AudioClip _hitSound;
 
     private void OnEnable()
     {
@@ -18,19 +13,24 @@ public class PlaySoundEffects : MonoBehaviour
         ColliderInformer.wasDropped += PlayHitSound;
     }
 
-    private void OnDisable()
+    private void Start()
     {
-        ColliderInformer.wasCollided += PlayPopSound;
-        ColliderInformer.wasDropped -= PlayHitSound;
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void PlayPopSound(int noneed)
     {
-        m_AudioSource.PlayOneShot(popSound);
+        _audioSource.PlayOneShot(_popSound);
     }
 
     private void PlayHitSound()
     {
-        m_AudioSource.PlayOneShot(hitSound);
+        _audioSource.PlayOneShot(_hitSound);
+    }
+
+    private void OnDisable()
+    {
+        ColliderInformer.wasCollided -= PlayPopSound;
+        ColliderInformer.wasDropped -= PlayHitSound;
     }
 }

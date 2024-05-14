@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class CallPauseMenu : MonoBehaviour
 {
+    public bool GameIsPaused {  get; private set; }
+
     [Header("Menu")]
-    private bool gameIsPaused;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject Settings;
 
@@ -14,9 +15,9 @@ public class CallPauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
-        gameIsPaused = !gameIsPaused;
+        GameIsPaused = !GameIsPaused;
 
-        if (gameIsPaused)
+        if (GameIsPaused)
         {
             pauseMenu.SetActive(true);
         }

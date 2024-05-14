@@ -1,25 +1,44 @@
 using UnityEngine;
-using TMPro;
+using Zenject;
+using System;
 
 public class Score : MonoBehaviour
 {
     public int CurrentScore {  get; private set; }
-    [SerializeField] private TextMeshProUGUI _scoreText;
 
-    private void Awake()
+    public Action ScoreHasChanged;
+
+    private Yandex _yandex;
+    [Inject]
+    private void Construct(Yandex yandex)
     {
-        _scoreText.text = CurrentScore.ToString("0");
-        ColliderInformer.wasCollided += Increase;
+        this._yandex = yandex;
     }
 
-    private void OnDisable()
+    private void OnEnable()
     {
         ColliderInformer.wasCollided += Increase;
+        GameOverTrigger.gameHasEnded += IsItTheBestScore;
     }
 
     private void Increase(int amount)
     {
         CurrentScore += amount;
-        _scoreText.text = CurrentScore.ToString();
+        ScoreHasChanged?.Invoke();
+    }
+
+    private void IsItTheBestScore()
+    {
+        if (CurrentScore > PlayerPrefs.GetInt("HighScore", 0))
+        {
+            PlayerPrefs.SetInt("HighScore", CurrentScore);
+            _yandex.SaveLiderBoard(CurrentScore);
+        }
+    }
+
+    private void OnDisable()
+    {
+        ColliderInformer.wasCollided -= Increase;
+        GameOverTrigger.gameHasEnded -= IsItTheBestScore;
     }
 }

@@ -49,13 +49,13 @@ public sealed class FruitSpawner : MonoBehaviour
 
     private void SpawnFisicalFruit()
     {
-        Quaternion rotation = CurrentFruitSprite.transform.rotation;
-        Vector3 currentFruitTransform = CurrentFruitSprite.transform.position;
+            Quaternion rotation = CurrentFruitSprite.transform.rotation;
+            Vector3 currentFruitTransform = CurrentFruitSprite.transform.position;
 
-        Destroy(CurrentFruitSprite.gameObject);
+            Destroy(CurrentFruitSprite.gameObject);
 
-        ColliderInformer fruitToSpawn = Instantiate(CurrentFruit, currentFruitTransform, rotation);
-        fruitToSpawn.transform.SetParent(_parentAfterThrow);
+            ColliderInformer fruitToSpawn = Instantiate(CurrentFruit, currentFruitTransform, rotation);
+            fruitToSpawn.transform.SetParent(_parentAfterThrow);
     }
 
     private void OnDisable()

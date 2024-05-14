@@ -5,7 +5,6 @@ public class ColliderInformer : MonoBehaviour
     public delegate void WasCollidedWithSameFruit(int amount);
     public static event WasCollidedWithSameFruit wasCollided;
 
-
     public delegate void HasDropped();
     public static event HasDropped wasDropped;
 
@@ -15,8 +14,6 @@ public class ColliderInformer : MonoBehaviour
 
     private FruitInfo _info;
 
-    [SerializeField] private AudioClip _audioClip;
-
     private void Awake()
     {
         _info = GetComponent<FruitInfo>();
@@ -24,12 +21,6 @@ public class ColliderInformer : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (HasCollided == false && WasCombinedIn == false)
-        {
-            HasCollided = true;
-            wasDropped?.Invoke();
-        }
-
         FruitInfo info = collision.gameObject.GetComponent<FruitInfo>();
         if (info != null)
         {
@@ -55,6 +46,12 @@ public class ColliderInformer : MonoBehaviour
                     }
                 }
             }
+        }
+
+        if (HasCollided == false && WasCombinedIn == false)
+        {
+            HasCollided = true;
+            wasDropped?.Invoke();
         }
 
     }

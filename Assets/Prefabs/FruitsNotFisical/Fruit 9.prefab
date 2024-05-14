@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8361810107827893443}
   - component: {fileID: 1567438810993228572}
   - component: {fileID: 7720822402580547921}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fruit 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,10 +111,10 @@ CircleCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1792
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1792
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0

@@ -70,7 +70,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""left"",
                     ""id"": ""113a9a4b-1551-42b7-96a8-c80f6cdc7b00"",
-                    ""path"": ""<Keyboard>/a"",
+                    ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -81,7 +81,7 @@ public partial class @Input: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""right"",
                     ""id"": ""53baf117-a224-4303-8eab-752b69d821c7"",
-                    ""path"": ""<Keyboard>/d"",
+                    ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -123,6 +123,39 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""Mobile"",
+                    ""id"": ""ff9b8fbc-014a-4af5-9129-1ed627fe17f2"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""90d47973-a60e-4e53-99b9-41387519b14c"",
+                    ""path"": ""<Touchscreen>/delta/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""a1126c2e-bd19-4ba8-8b88-842f4264aeb3"",
+                    ""path"": ""<Touchscreen>/primaryTouch/delta/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""14b3e3f6-7fbb-49ac-9c5d-baad74452358"",
                     ""path"": ""<Gamepad>/buttonSouth"",
@@ -138,6 +171,17 @@ public partial class @Input: IInputActionCollection2, IDisposable
                     ""id"": ""85c1151b-fd99-4fe3-b5d7-cbfc532f72c6"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1b8ed5bc-c424-4e8f-b8f8-97e5459d1442"",
+                    ""path"": ""<Touchscreen>/touch1/tap"",
+                    ""interactions"": ""SlowTap(duration=1)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Throw"",
